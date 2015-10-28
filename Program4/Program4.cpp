@@ -1,6 +1,6 @@
 //---------------------------------------------------------------------
 //
-// Name:  ,Zachary Bentzen   
+// Name:  Elizabeth Harasymiw ,Zachary Bentzen   
 //
 // Course:  CS 1430, Section 5  
 //
