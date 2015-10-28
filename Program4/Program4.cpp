@@ -28,6 +28,7 @@ int main()
    cin >> mass;
    return 0;
 }
+// Zachary
 //Reads the parcel post table, reading the size of the table first
 //and that many masses and costs.  Assume that the massess are
 //ordered in ascending order by mass in (integer) grams.
@@ -35,14 +36,14 @@ int main()
 void ReadParcelPostTable(int masses[], float costs[], int & sizeOfTable);
 
  
-
+// Zachary
 //Prints the parcel post table in tabular form. Prints the heading 
 //that includes printing the size of the table. (See sample output)
 //params: TODO
 void PrintParcelPostTable(const int masses[], const float costs[], int sizeOfTable);
 
  
-
+// togeather
 //Finds and returns an index of the look-up-mass in the Masses 
 //array. Since the Masses array is ordered in ascending order by 
 //mass, this function returns the index of the first mass 
@@ -53,14 +54,14 @@ void PrintParcelPostTable(const int masses[], const float costs[], int sizeOfTab
 int FindIndexOfMass(const int masses[], int lookUpMass, int size);
 
  
-
+// Elizabeth
 //Returns the largest value in the dim array; size is how many items
 //are in the dim array.
 //params: TODO
 float FindLargestDimension( const int dim[], int size);
 
  
-
+// Elizabeth
 //Returns the girth of a parcel where girth is calculated as twice 
 //the difference of the sum of the elements in the dim array and the 
 //largest of the dimensions. 
