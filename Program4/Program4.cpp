@@ -16,6 +16,12 @@
 #include <string>
 using namespace std;
 
+void ReadParcelPostTable(int masses[], float costs[], int & sizeOfTable);
+void PrintParcelPostTable(const int masses[], const float costs[], int sizeOfTable);
+int FindIndexOfMass(const int masses[], int lookUpMass, int size);
+float FindLargestDimension( const int dim[], int size);
+float Girth( const int dim[], int size);
+
 int main()
 {
    int mass;
