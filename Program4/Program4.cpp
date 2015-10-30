@@ -32,8 +32,10 @@ int main()
 }
 float ReadInData(int masses[], float costs[], int sizeOfTable)
 	for(int i = 0; i < size; i++)
-		if(i < MAXSIZE)
-			cin >> masses[i] >> costs[i];
+	{
+		//if(i <= MAXSIZE) might not need
+		cin >> masses[i] >> costs[i];
+	}
 // Zachary
 //Reads the parcel post table, reading the size of the table first
 //and that many masses and costs.  Assume that the massess are
