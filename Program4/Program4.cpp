@@ -85,6 +85,16 @@ int FindIndexOfMass(const int masses[], int lookUpMass, int size);
 //are in the dim array.
 //params: TODO
 float FindLargestDimension( const int dim[], int size);
+{
+	float largest = 0;
+	int i = 0;
+
+	for(i = 0 ; i < size ; i ++))
+		if(dim[i] > largest)	
+			largest = dim[i];
+	return largest;
+		
+}
 
  
 // Elizabeth
