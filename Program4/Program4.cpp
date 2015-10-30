@@ -33,7 +33,8 @@ int main()
 float ReadInData(int masses[], float costs[], int sizeOfTable)
 	for(int i = 0; i < size; i++)
 	{
-		//if(i <= MAXSIZE) might not need
+		//if(i <= MAXSIZE)// might not need
+		
 		cin >> masses[i] >> costs[i];
 	}
 // Zachary
