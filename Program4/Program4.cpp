@@ -16,61 +16,63 @@
 #include <string>
 using namespace std;
 
+const int MAXSIZE = 25;
+
 void ReadParcelPostTable(int masses[], float costs[], int & sizeOfTable);
 void PrintParcelPostTable(const int masses[], const float costs[], int sizeOfTable);
 int FindIndexOfMass(const int masses[], int lookUpMass, int size);
 float FindLargestDimension( const int dim[], int size);
 float Girth( const int dim[], int size);
-const int MAXSIZE = 25;
 
 int main()
 {
    cout << fixed << showpoint << setprecision(2);
    int mass, size;
-   cin >> size;
+   float masses[MAXSIZE], costs[MAXSIZE];
+
+
+   ReadParcelPostTable ( masses, costs, size );
+
+   cout << "Parcel Post Table in tabular form with 10 entries."
+		<< endl << endl << "      Mass        Cost" << endl
+                           "    ------       -----" << endl;
+
+   PrintParcelPostTable( masses, costs, size );
+   cout << "    ------       -----" << endl << endl << endl;
+
    return 0;
 }
-float ReadInData(int masses[], float costs[], int sizeOfTable)
-	for(int i = 0; i < size; i++)
-	{
-		//if(i <= MAXSIZE)// might not need
-		
-		cin >> masses[i] >> costs[i];
-	}
+
 // Zachary
 //Reads the parcel post table, reading the size of the table first
 //and that many masses and costs.  Assume that the massess are
 //ordered in ascending order by mass in (integer) grams.
 //params: in, in, out
-void ReadParcelPostTable(int masses[], float costs[], int & sizeOfTable);
-	for(int i = 0; i < size; i++)
-		
-		
+void ReadParcelPostTable(int masses[], float costs[], int & sizeOfTable)
+{
+	cout << "Enter how many in Parcel Post Table (Grams Dollars):"<< endl;
+	cin >> sizeOfTable;
+	cout << endl << "Enter Parcel Post Table (mass & cost) information:" << endl;
 
- 
+	for(int i = 0; i < sizeOfTable; i++)
+		if(i <= MAXSIZE)   //might not needed for grade but will pervent
+			cin >> masses[i] >> costs[i];
+	// this function is ReadInData
+}
+
+		
 // Zachary
 //Prints the parcel post table in tabular form. Prints the heading 
 //that includes printing the size of the table. (See sample output)
 //params: TODO
-void PrintParcelPostTable(const int masses[], const float costs[], int sizeOfTable);
+void PrintParcelPostTable(const int masses[], const float costs[], int sizeOfTable)
 {
-	cout << "Enter how many in Parcel Post Table (Grams Dollars):"
-  		 << endl << endl << "Enter Parcel Post Table (mass & cost) information:" 
-	 	 << endl << endl << "Parcel Post Table in tabular form with 10 entries."
-		 << endl << endl << "      Mass        Cost" << endl
-                       "    ------       -----" << endl;
-	for(int i = 0; i < size; i++)
-	{
+	for(int i = 0; i < sizeOfTable; i++)
 		cout << masses[i] << setw (10) << cost[i] << setw (10) << endl;	
-	}
-					   
-					   
-	cout << "    ------       -----" << endl;
-	
 }
 
  
-// togeather
+// together
 //Finds and returns an index of the look-up-mass in the Masses 
 //array. Since the Masses array is ordered in ascending order by 
 //mass, this function returns the index of the first mass 
@@ -97,7 +99,6 @@ float FindLargestDimension( const int dim[], int size);
 		
 }
 
- 
 // Elizabeth
 //Returns the girth of a parcel where girth is calculated as twice 
 //the difference of the sum of the elements in the dim array and the 
