@@ -90,7 +90,7 @@ void PrintParcelPostTable(const int masses[], const float costs[], int sizeOfTab
 		}
 	*/
 	}			   
-	cout << "    ------       -----" << endl;
+	cout << "    ------       -----" << endl;// change
 }
 
 /*---------------------------------------------------------------------
