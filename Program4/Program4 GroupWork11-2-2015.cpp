@@ -45,7 +45,7 @@ int main()
  * and that many masses and costs.  Assume that the massess are
  * ordered in ascending order by mass in (integer) grams.
  *
- * @params: ( In, In, Out )
+ * @params: in, in, out
  ---------------------------------------------------------------------*/
 void ReadParcelPostTable(int masses[], float costs[], int & sizeOfTable)
 {
@@ -56,6 +56,7 @@ void ReadParcelPostTable(int masses[], float costs[], int & sizeOfTable)
 	for(int i = 0; i < sizeOfTable; i++)
 		if(i <= MAXSIZE)   //might not needed for grade but will pervent
 			cin >> masses[i] >> costs[i];
+	// this function is ReadInData
 }
 
 /*---------------------------------------------------------------------
@@ -64,7 +65,7 @@ void ReadParcelPostTable(int masses[], float costs[], int & sizeOfTable)
  * Prints the parcel post table in tabular form. Prints the heading 
  * that includes printing the size of the table. (See sample output)
  *
- * @params ( In, In, In )
+ * @params TODO
  ---------------------------------------------------------------------*/
 void PrintParcelPostTable(const int masses[], const float costs[], int sizeOfTable)
 {
@@ -92,15 +93,6 @@ void PrintParcelPostTable(const int masses[], const float costs[], int sizeOfTab
 	}			   
 	cout << "    ------       -----" << endl;
 }
-
-/*---------------------------------------------------------------------
- * @author Elizabeth
- * @author Zachary
- *
- * What the function does blah blah blah
- *
- * @params none?
- ---------------------------------------------------------------------*/
 void printCost_Reject()
 {
 	for(int i = 0; i < size; i++)
@@ -129,7 +121,7 @@ void printCost_Reject()
  * to masses[i].
  * On the off chance that no such index can be found, returns -1.
  *
- * @params ( Out, In, In )
+ * @params TODO
  ---------------------------------------------------------------------*/
 int FindIndexOfMass(const int masses[], int lookUpMass, int size)
 {
