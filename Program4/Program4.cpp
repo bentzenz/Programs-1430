@@ -17,7 +17,7 @@
 #include <string>
 using namespace std;
 
-const int MAXSIZE = 25, MAXLG = 240, MAXLWD = 101, MAXMASS = 3200;
+const int MAXSIZE = 25, MAXG = 240, MAXLWD = 101, MAXMASS = 3200;
 
 void ReadParcelPostTable(int masses[], float costs[], int & sizeOfTable);
 void PrintParcelPostTable(const int masses[], const float costs[], int sizeOfTable);
@@ -28,13 +28,13 @@ float Girth( const int dim[], int size);
 int main()
 {
    cout << fixed << showpoint << setprecision(2);
-   int mass, size;
-   float masses[MAXSIZE], costs[MAXSIZE];
-   //while(!cin.eof()) --- should be inside one of PrintParcelPostTable
+   int size, dim, masses;
+   float costs;
    ReadParcelPostTable(masses, costs, size);
-   
-   PrintParcelPostTable( masses, costs, size );
-   largest = FindLargestDimension( const int dim[], size);
+   ReadInDimension(dim, size);
+   PrintParcelPostTable(masses, costs, size );
+   //largest = FindLargestDimension(dim, size);
+   printTransnum_mass_reject(masses, costs, size);
    return 0;
 }
 
@@ -49,10 +49,12 @@ int main()
  ---------------------------------------------------------------------*/
 void ReadParcelPostTable(int masses[], float costs[], int & sizeOfTable)
 {
+	while (!cin.eof())
 	cout << "Enter how many in Parcel Post Table (Grams Dollars):"<< endl;
 	cin >> sizeOfTable;
 	cout << endl << "Enter Parcel Post Table (mass & cost) information:" << endl;
-
+	cout << "Parcel Post Table in tabular form with " << sizeOfTable
+		 << " entries." << endl;
 	for(int i = 0; i < sizeOfTable; i++)
 		if(i <= MAXSIZE)   //might not needed for grade but will pervent
 			cin >> masses[i] >> costs[i];
@@ -72,8 +74,8 @@ void PrintParcelPostTable(const int masses[], const float costs[], int sizeOfTab
   		 << endl << endl << "Enter Parcel Post Table (mass & cost) information:" 
 	 	 << endl << endl << "Parcel Post Table in tabular form with 10 entries."
 		 << endl << endl << "      Mass        Cost" << endl
-                         << "    ------       -----" << endl;
-	for(int i = 0; i < size; i++)
+                       << "    ------       -----" << endl;
+	for(int i = 0; i < sizeOfTable; i++)
 	{
 		cout << masses[i] << costs[i] << endl;
 	/* for(int i = 0; i < size; i++)
@@ -98,25 +100,32 @@ void PrintParcelPostTable(const int masses[], const float costs[], int sizeOfTab
  * @author Elizabeth
  * @author Zachary
  *
- * What the function does blah blah blah
- *
+ * checks what reject to use
+ *this test masses, leargest dimension and Girth
  * @params none?
  ---------------------------------------------------------------------*/
-bool printCost_Reject()
+bool printCost_Reject(const int masses, const int largest, const int Girth, int sizeOfTable)
 {
-	for(int i = 0; i < size; i++)
+	int numofreject = 0;
+	for(int i = 0; i < sizeOfTable; i++)
 	{
 		if(masses[i] >= MAXSIZE)
 		{
 			cout <<  "REJECT_01 – EXCEEDS MASS LIMIT" << endl;
+			++numofreject;
+         return true;
 		}
-		else if(largest[i]; >= MAXLWD)
+		else if(largest[i] >= MAXLWD)
 		{	
 			cout << "REJECT_02 – EXCEEDS DIMENSION LIMIT" << endl;
+			++numofreject;
+         return true;
 		}
-		else if(Girth( const int dim[], size) >= MAXLG)
+      else if(Girth[i] >= MAXG)
 		{
 			cout << "REJECT_03 – EXCEEDS LENGTH/GIRTH LIMIT" << endl;
+			++numofreject;
+         return true;
 		}
 	}
 	return false;
@@ -129,15 +138,15 @@ void printTransnum_mass_reject( const int masses[], const int costs[], int sizeO
 	for(int i = 0; i < sizeOfTable; i++)
 	{
 		if (printCost_Reject == false)
-			cout << cout << // transacton number 
-			 << Masses[i] << costs[i] << endl;
+			cout << i // transacton number 
+				 << masses[i] << costs[i] << endl;
 		else
-			cout << // transacton number 
-			 << Masses[i] << printCost_Reject << endl;
+			cout << i // transacton number 
+				 << masses[i] << printCost_Reject() << endl;
 	}
-	cout << "Number of packages processed is " << // total packages << endl;
-		 <<	"Number of packages rejected is " << // total rejected << endl;
-		 << "Total cost of sending non-rejected packages is " << // total cost << endl;
+	cout << "Number of packages processed is " << sizeOfTable << endl; // total packages
+	cout <<	"Number of packages rejected is " << numofreject << endl;// total rejected 
+	cout << "Total cost of sending non-rejected packages is " << // total cost << endl;
 }
 
 /*---------------------------------------------------------------------
@@ -157,19 +166,21 @@ int FindIndexOfMass(const int masses[], int lookUpMass, int size)
 {
 	for (int i = 0; i < size; i++)
 	{
-		if (lookupmass <= masses[i])
-			return lookUpMass == masses[i]; // index of masses[i]
+		if (lookUpMass <= masses[i])
+			return lookUpMass = i; // index of masses[i]
 		else
 		return -1;
 	
 	}
 }
-void ReadInDeimension (int dim[], int size)
-int s1 = 0, s2 = 0, s3 = 0;
-for(int i = 0; i < size; i++)
+void ReadInDimension (int dim[], int size)
 {
-	cin >> s1 >> s2 >> s3;
-	dim[i] = s1, s2, s3;
+	int s1 = 0, s2 = 0, s3 = 0;
+	for(int i = 0; i < size; i++)
+	{
+		cin >> s1 >> s2 >> s3;
+		dim[i] = s1, s2, s3;
+	}
 }
 /*void FindLength ( const int dim[], int size, int length[])
 for(int i = 0; i < size; i++)
@@ -193,13 +204,17 @@ for(int i = 0; i < size; i++)
 float FindLargestDimension( const int dim[], int size);
 {
 	float largest = 0;
-	int i = 0;
-
-	for(i = 0 ; i < size ; i ++)
-		if(dim[i] > largest)	
-			largest = dim[i];
-	return largest;
-		
+	for(int i = 0 ; i < size ; i ++)
+	{
+		if (s1 < s2 && s1 < s3)
+		return largest = s1;
+	else if( s2 < s3)
+		return largest = s2;
+	return largest = s3;
+		//if(dim[i] > largest)	
+			//largest = dim[i];
+	}
+	//return largest;		
 }
  
 /*---------------------------------------------------------------------
@@ -213,6 +228,7 @@ float FindLargestDimension( const int dim[], int size);
  ---------------------------------------------------------------------*/
 float Girth( const int dim[], int size)
 {
-for(int i =0; i < size; i++)
+for(int i = 0; i < size; i++)
+{
 	return // Girth = 2 * ( s1 + s2 + s3 – length(length = larghest dimension))
 }
